@@ -1,6 +1,8 @@
 var { Given, When, Then } = require('cucumber');
 var Selector = require('testcafe').Selector;
 var Role = require('testcafe').Role;
+var githubPage = require('../support/pages/github-page');
+var t = require('testcafe').t
 
 Given(/^I am open GitHub page$/, function () {
     return this.waitForTestController()
@@ -12,9 +14,9 @@ Given(/^I am open GitHub page$/, function () {
 });
 
 When(/^I am typing my search request "([^"]*)" on GitHub$/, function (text) {
-    var input = Selector('input.form-control.header-search-input.js-site-search-focus').with({ boundTestRun: testController });
+    var input = Selector('.header-search-input').with({ boundTestRun: testController });
 
-    return testController.typeText(input, text);
+    return testController.typeText(input, text)
 });
 
 Then(/^I am pressing (.*) key on GitHub$/, function (text) {
@@ -22,7 +24,7 @@ Then(/^I am pressing (.*) key on GitHub$/, function (text) {
 });
 
 Then(/^I should see that the first GitHub\'s result is (.*)$/, function (text) {
-    var firstLink = Selector('#js-pjax-container > div.container > div > div.column.three-fourths.codesearch-results.pr-6 > ul > div:nth-child(1) > div.col-8.pr-3 > h3 > a').with({ boundTestRun: testController });
+    var firstLink = Selector('.repo-list-item').nth(0).with({ boundTestRun: testController });
 
     return testController.expect(firstLink.innerText).contains(text);
 });

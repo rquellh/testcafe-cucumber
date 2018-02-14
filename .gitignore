@@ -1,5 +1,2 @@
 # Dependency directory
 node_modules
-
-# Setting for VSCode plugins
-.vscode/settings.json

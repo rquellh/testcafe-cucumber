@@ -7,3 +7,10 @@ Feature: Searching for TestCafe by Google
     When I am typing my search request "github TestCafe" on Google
     Then I am pressing 'enter' key on Google
     Then I should see that the first Google's result is "GitHub - DevExpress/testcafe:"
+  
+  @test  
+  Scenario: Failing scenario
+    Given I am open Google's search page
+    When I am typing my search request "github TestCafe" on Google
+    Then I am pressing 'enter' key on Google
+    Then I should see that the first Google's result is "kittens"

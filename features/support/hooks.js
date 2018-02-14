@@ -1,8 +1,7 @@
 const fs = require('fs');
 const createTestCafe = require('testcafe');
 const testControllerHolder = require('../support/testControllerHolder');
-var { AfterAll, BeforeAll, setDefaultTimeout, Before, After } = require('cucumber');
-var { t } = require('testcafe');
+var { AfterAll, BeforeAll, setDefaultTimeout, Before, After, Status } = require('cucumber');
 
 var testcafe = null;
 var TIMEOUT = 20000;
@@ -27,8 +26,9 @@ function runTest(iteration) {
             return runner
                 .src('./test.js')
                 .browsers('chrome')
+                .screenshots('./reports/screenshots/', true)
                 .run()
-                .catch(function(error){
+                .catch(function (error) {
                     console.log(error);
                 });
         })
@@ -44,13 +44,13 @@ BeforeAll(function () {
 
 });
 
-Before(function(){
+Before(function () {
     runTest(n);
     createTestFile();
     n += 2;
 });
 
-After(function(){
+After(function () {
     fs.unlinkSync('test.js');
     testControllerHolder.free();
     testcafe.close();
