@@ -2,13 +2,7 @@ var { Given, When, Then } = require('cucumber');
 var Selector = require('testcafe').Selector;
 
 Given('I am open Google\'s search page', function () {
-    return this.waitForTestController()
-        .then(function (tc) {
-            testController = tc;
-
-            return testController.navigateTo('https://google.com');
-
-        })
+    return testController.navigateTo('https://google.com');
 });
 
 When('I am typing my search request {string} on Google', function (text) {
@@ -17,7 +11,7 @@ When('I am typing my search request {string} on Google', function (text) {
     return testController.typeText(input, text);
 });
 
-Then('I am pressing {string} key on Google', async (text) => {
+Then('I press the {string} key on Google', async (text) => {
     await testController.pressKey(text);
 });
 
