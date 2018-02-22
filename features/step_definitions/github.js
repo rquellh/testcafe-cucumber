@@ -2,15 +2,9 @@ var { Given, When, Then } = require('cucumber');
 var Selector = require('testcafe').Selector;
 var Role = require('testcafe').Role;
 var githubPage = require('../support/pages/github-page');
-var t = require('testcafe').t
 
 Given(/^I am open GitHub page$/, function () {
-    return this.waitForTestController()
-        .then(function (tc) {
-            testController = tc;
-
-            return testController.navigateTo('https://github.com/');
-        });
+    return testController.navigateTo('https://github.com/');
 });
 
 When(/^I am typing my search request "([^"]*)" on GitHub$/, function (text) {
