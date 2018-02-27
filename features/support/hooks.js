@@ -33,8 +33,8 @@ function runTest(iteration) {
                 });
         })
         .then(function (report) {
-            console.log(report);
-            testcafe.close()
+            console.log(report)
+            testcafe.close();
         });
 }
 
@@ -49,7 +49,9 @@ Before(function () {
     runTest(n);
     createTestFile();
     n += 2;
-    return this.waitForTestController
+    return this.waitForTestController.then(function (testController) {
+        return testController.maximizeWindow();
+    })
 });
 
 After(function () {

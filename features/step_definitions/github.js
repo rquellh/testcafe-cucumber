@@ -3,14 +3,12 @@ var Selector = require('testcafe').Selector;
 var Role = require('testcafe').Role;
 var githubPage = require('../support/pages/github-page');
 
-Given(/^I am open GitHub page$/, function () {
-    return testController.navigateTo('https://github.com/');
+Given(/^I open the GitHub page$/, function () {
+    return testController.navigateTo(githubPage.github.url());
 });
 
 When(/^I am typing my search request "([^"]*)" on GitHub$/, function (text) {
-    var input = Selector('.header-search-input').with({ boundTestRun: testController });
-
-    return testController.typeText(input, text)
+    return testController.typeText(githubPage.github.searchButton(), text)
 });
 
 Then(/^I am pressing (.*) key on GitHub$/, function (text) {
@@ -18,15 +16,13 @@ Then(/^I am pressing (.*) key on GitHub$/, function (text) {
 });
 
 Then(/^I should see that the first GitHub\'s result is (.*)$/, function (text) {
-    var firstLink = Selector('.repo-list-item').nth(0).with({ boundTestRun: testController });
-
-    return testController.expect(firstLink.innerText).contains(text);
+    return testController.expect(githubPage.github.firstSearchResult().innerText).contains(text);
 });
 
-const gitHubRoleForExample = Role('http://github.com/login', function (t) {
+const gitHubRoleForExample = Role(githubPage.github.url() + "login", function (t) {
     return t
-        .click('.btn.btn-primary.btn-block')
-        .expect(Selector('#js-flash-container > div > div').innerText).contains("Incorrect username or password.");
+        .click(githubPage.github.loginButton())
+        .expect(githubPage.github.loginErrorMessage().innerText).contains("Incorrect username or password.");
 });
 
 Then(/^I am trying to use (.*)$/, function (text) {

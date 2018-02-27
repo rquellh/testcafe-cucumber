@@ -11,7 +11,7 @@ function CustomWorld({ attach }) {
     this.attach = attach;
 
     this.addScreenshotToReport = function () {
-        testController.takeScreenshot()
+        return testController.takeScreenshot()
         .then(function (buffer) {
             var imgInBase64 = base64Img.base64Sync(buffer)
             var imageConvertForCuc = imgInBase64.substring(imgInBase64.indexOf(",") + 1)

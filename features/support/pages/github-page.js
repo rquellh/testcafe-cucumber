@@ -1,12 +1,31 @@
-var {Selector} = require('testcafe')
+var { Selector } = require('testcafe')
 
 //Selectors
-exports.github = {
-    url: function() {
-        return 'https://github.com/'
-    }
+
+function select(selector) {
+    return Selector(selector).with({ boundTestRun: testController });
 }
 
-exports.navigateToGithub = function() {
-    return t.navigateTo('https://github.com/')
+exports.github = {
+    url: function () {
+        return 'https://github.com/'
+    },
+    searchBox: function () {
+        return select('.header-search-input');
+    },
+    firstSearchResult: function () {
+        return Selector('.repo-list-item').nth(0).with({ boundTestRun: testController });
+    },
+    loginButton: function () {
+        return select('.btn.btn-primary.btn-block');
+    },
+    loginErrorMessage: function () {
+        return select('#js-flash-container > div > div');
+    },
+    searchButton: function () {
+        return select('.header-search-input');
+    },
+    firstSearchResult: function () {
+        return Selector('.repo-list-item').nth(0).with({ boundTestRun: testController });
+    }
 }
