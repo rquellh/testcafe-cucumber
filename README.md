@@ -26,7 +26,7 @@ This will also allow you to debug in VSCode.
 
 2. Navigate to Debug `Ctrl + Shift + d` and click "Start Debugging"
 
-##Helpful VSCode Extensions
+## Helpful VSCode Extensions
 
 * [Cucumber (Gherkin) Full Support](https://marketplace.visualstudio.com/items?itemName=alexkrechik.cucumberautocomplete) is a really helpful VSCode extension that does Cucumber syntax highlighting, autocomplete, and other things that are really helpful when working with Cucumber. The good news is, I've already setup everything you need in the settings.json file, so all you need to do is install it. 
 
@@ -36,3 +36,5 @@ This will also allow you to debug in VSCode.
 * As of the time I am writting this, there is only 1 passing test of 3. I decided to not make all of the tests passing, so you could see how failures are handled. 
 
 * My solution closes the TestCafe browser between each scenario. I tried to keep it open between scenarios but had trouble with handling failures. If you find a solution, I'd like to know.
+
+* With TestCafe version 0.19.0, you no longer have to manually update stack-chain. Thank you to the TestCafe crew for making the integration much easier.
