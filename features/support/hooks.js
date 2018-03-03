@@ -34,7 +34,6 @@ function runTest(iteration) {
         })
         .then(function (report) {
             console.log(report)
-            testcafe.close();
         });
 }
 
