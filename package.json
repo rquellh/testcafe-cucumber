@@ -6,7 +6,8 @@
   "scripts": {
     "debug": "node --inspect=1337 --debug-brk --nolazy node_modules/cucumber/bin/cucumber-js --tags @debug",
     "test": "./node_modules/.bin/cucumber-js.cmd",
-    "test-report": "./node_modules/.bin/cucumber-js.cmd --format json:./reports/report.json"
+    "test-report": "./node_modules/.bin/cucumber-js.cmd --format json:./reports/report.json",
+    "test-chrome": "./node_modules/.bin/cucumber-js.cmd  --world-parameters {\"browser\": \"chrome\"}"
   },
   "dependencies": {
     "base64-img": "^1.0.4",

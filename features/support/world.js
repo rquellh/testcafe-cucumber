@@ -2,13 +2,21 @@ var { setWorldConstructor } = require('cucumber');
 const testControllerHolder = require('./testControllerHolder');
 var base64Img = require('base64-img');
 
-function CustomWorld({ attach }) {
+function CustomWorld({ attach, parameters }) {
     this.waitForTestController = testControllerHolder.get()    
     .then(function (tc) {
         return testController = tc;
     })   
 
     this.attach = attach;
+
+    this.setBrowser = function() {
+        if (parameters.browser === undefined) {
+            return "chrome";
+        } else {
+            return parameters.browser;
+        }
+    }
 
     this.addScreenshotToReport = function () {
         return testController.takeScreenshot()

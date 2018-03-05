@@ -1,7 +1,7 @@
 const fs = require('fs');
 const createTestCafe = require('testcafe');
 const testControllerHolder = require('../support/testControllerHolder');
-var { AfterAll, BeforeAll, setDefaultTimeout, Before, After, Status } = require('cucumber');
+const { AfterAll, BeforeAll, setDefaultTimeout, Before, After, Status } = require('cucumber');
 
 var testcafe = null;
 var TIMEOUT = 20000;
@@ -16,7 +16,7 @@ function createTestFile() {
         'test("test", testControllerHolder.capture)');
 }
 
-function runTest(iteration) {
+function runTest(iteration, browser) {
     var runner = null;
 
     createTestCafe('localhost', 1338 + iteration, 1339 + iteration)
@@ -25,7 +25,7 @@ function runTest(iteration) {
             runner = tc.createRunner();
             return runner
                 .src('./test.js')
-                .browsers('chrome')
+                .browsers(browser)
                 .screenshots('./reports/screenshots/')
                 .run()
                 .catch(function (error) {
@@ -45,7 +45,7 @@ BeforeAll(function () {
 });
 
 Before(function () {
-    runTest(n);
+    runTest(n, this.setBrowser());
     createTestFile();
     n += 2;
     return this.waitForTestController.then(function (testController) {
