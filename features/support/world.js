@@ -19,12 +19,14 @@ function CustomWorld({ attach, parameters }) {
     }
 
     this.addScreenshotToReport = function () {
-        return testController.takeScreenshot()
-        .then(function (buffer) {
-            var imgInBase64 = base64Img.base64Sync(buffer)
-            var imageConvertForCuc = imgInBase64.substring(imgInBase64.indexOf(",") + 1)
-            return attach(imageConvertForCuc, 'image/png');
-        })
+        if (process.argv.includes("--format") || process.argv.includes("-f") || process.argv.includes("--format-options")){
+            return testController.takeScreenshot()
+            .then(function (buffer) {
+                var imgInBase64 = base64Img.base64Sync(buffer)
+                var imageConvertForCuc = imgInBase64.substring(imgInBase64.indexOf(",") + 1)
+                return attach(imageConvertForCuc, 'image/png');
+            })
+        }
     }
 }
 
