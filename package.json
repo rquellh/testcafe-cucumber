@@ -4,10 +4,10 @@
   "description": "An integration of TestCafe and CucumberJS",
   "author": "ryan-quellhorst",
   "scripts": {
-    "debug": "node --inspect=1337 --debug-brk --nolazy node_modules/cucumber/bin/cucumber-js --tags @debug",
+    "debug": "node --inspect=1337 --debug-brk --nolazy node_modules/cucumber/bin/cucumber-js --tags @debug --format json:./reports/report.json",
     "test": "./node_modules/.bin/cucumber-js.cmd",
     "test-report": "./node_modules/.bin/cucumber-js.cmd --format json:./reports/report.json",
-    "test-chrome": "./node_modules/.bin/cucumber-js.cmd  --world-parameters {\"browser\": \"chrome\"}"
+    "test-chrome": "./node_modules/.bin/cucumber-js.cmd  --world-parameters \"{\\\"browser\\\": \\\"chrome\\\"}\""
   },
   "dependencies": {
     "base64-img": "^1.0.4",
