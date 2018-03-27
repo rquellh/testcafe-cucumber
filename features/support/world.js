@@ -3,7 +3,8 @@ const testControllerHolder = require('./testControllerHolder');
 var base64Img = require('base64-img');
 
 function CustomWorld({ attach, parameters }) {
-    this.waitForTestController = testControllerHolder.get().then(function (tc) {
+    this.waitForTestController = testControllerHolder.get()
+    .then(function (tc) {
         return testController = tc;
     }) 
 
