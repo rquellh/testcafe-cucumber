@@ -3,3 +3,6 @@ node_modules
 
 # Screenshots
 reports/screenshots
+
+reports/screenshot/*
+!reports/screenshots/.gitkeep
