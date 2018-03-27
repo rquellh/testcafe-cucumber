@@ -23,6 +23,6 @@
   "dependencies": {
     "base64-img": "^1.0.4",
     "cucumber": "^4.0.0",
-    "testcafe": "^0.19.0"
+    "testcafe": "^0.19.1"
   }
 }
