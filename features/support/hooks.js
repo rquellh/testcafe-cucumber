@@ -1,9 +1,10 @@
 const fs = require('fs');
 const createTestCafe = require('testcafe');
+const testcafe = require('testcafe');
 const testControllerHolder = require('../support/testControllerHolder');
 const { AfterAll, BeforeAll, setDefaultTimeout, Before, After, Status } = require('cucumber');
 
-var testcafe = null;
+var cafeRunner = null;
 var TIMEOUT = 20000;
 var n = 0;
 
@@ -21,28 +22,23 @@ function runTest(iteration, browser) {
 
     createTestCafe('localhost', 1338 + iteration, 1339 + iteration)
         .then(function (tc) {
-            testcafe = tc;
+            cafeRunner = tc;
             runner = tc.createRunner();
             return runner
                 .src('./test.js')
+                .screenshots('reports/screenshots/', true)
                 .browsers(browser)
-                .screenshots('./reports/screenshots/')
                 .run()
                 .catch(function (error) {
                     console.log(error);
                 });
         })
         .then(function (report) {
-            console.log(report)
         });
 }
 
 
 setDefaultTimeout(TIMEOUT);
-
-BeforeAll(function () {
-
-});
 
 Before(function () {
     runTest(n, this.setBrowser());
@@ -56,9 +52,35 @@ Before(function () {
 After(function () {
     fs.unlinkSync('test.js');
     testControllerHolder.free();
-    testcafe.close();
 });
 
-AfterAll(function () {
+After(function (testCase) {
+    if (testCase.result.status === Status.FAILED) {
+        testController.executionChain
+            .catch(async function (result) {
+                errAdapter = new testcafe.embeddingUtils.TestRunErrorFormattableAdapter(result, {
+                    screenshotPath: null,
+                    testRunPhase: testController.testRun.phase,
+                    userAgent: testController.testRun.browserConnection.browserInfo.userAgent
+                });
+                await testController.testRun.errs.push(errAdapter)
+            })
+    };
+});
 
+AfterAll(function(){
+    var intervalId = null;
+
+    function waitForTestCafe () {
+        intervalId = setInterval(checkLastResponse, 500)
+    }
+
+    function checkLastResponse(){
+        if (testController.testRun.lastDriverStatusResponse === 'test-done-confirmation') {
+            process.exit();
+            clearInterval(intervalId);
+        }
+    }
+
+    waitForTestCafe();
 });
