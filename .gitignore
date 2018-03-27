@@ -4,5 +4,6 @@ node_modules
 # Screenshots
 reports/screenshots
 
-reports/screenshot/*
-!reports/screenshots/.gitkeep
+# Added empty reports folder
+reports/*
+!reports/.gitkeep
