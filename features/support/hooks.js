@@ -1,20 +1,25 @@
 const fs = require('fs');
 const createTestCafe = require('testcafe');
-const testcafe = require('testcafe');
 const testControllerHolder = require('../support/testControllerHolder');
 const { AfterAll, BeforeAll, setDefaultTimeout, Before, After, Status } = require('cucumber');
+const errorHandling = require('../support/errorHandling')
 
+var isTestCafeError = false;
+var attachScreenshotToReport = null;
 var cafeRunner = null;
 var TIMEOUT = 20000;
 var n = 0;
 
 function createTestFile() {
     fs.writeFileSync('test.js',
+        'import errorHandling from "./features/support/errorHandling.js";\n' +
         'import testControllerHolder from "./features/support/testControllerHolder.js";\n\n' +
 
         'fixture("fixture")\n' +
 
-        'test("test", testControllerHolder.capture)');
+        'test\n' +
+        '("test", testControllerHolder.capture)\n' +
+        '.after(async t => {await errorHandling.ifErrorTakeScreenshot(t)})');
 }
 
 function runTest(iteration, browser) {
@@ -55,32 +60,39 @@ After(function () {
 });
 
 After(function (testCase) {
+    var world = this;
     if (testCase.result.status === Status.FAILED) {
-        testController.executionChain
-            .catch(async function (result) {
-                errAdapter = new testcafe.embeddingUtils.TestRunErrorFormattableAdapter(result, {
-                    screenshotPath: null,
-                    testRunPhase: testController.testRun.phase,
-                    userAgent: testController.testRun.browserConnection.browserInfo.userAgent
-                });
-                await testController.testRun.errs.push(errAdapter)
-            })
-    };
+        isTestCafeError = true;
+        attachScreenshotToReport = world.attachScreenshotToReport;
+        errorHandling.addErrorToController();
+    }
 });
 
-AfterAll(function(){
+AfterAll(function () {
     var intervalId = null;
 
-    function waitForTestCafe () {
+    function waitForTestCafe() {
         intervalId = setInterval(checkLastResponse, 500)
     }
 
-    function checkLastResponse(){
+    function checkLastResponse() {
         if (testController.testRun.lastDriverStatusResponse === 'test-done-confirmation') {
+            cafeRunner.close();
             process.exit();
             clearInterval(intervalId);
         }
     }
 
     waitForTestCafe();
-});
+})
+
+var getIsTestCafeError = function() {
+    return isTestCafeError;
+}
+
+var getAttachScreenshotToReport = function(){
+    return attachScreenshotToReport;
+}
+
+exports.getIsTestCafeError = getIsTestCafeError;
+exports.getAttachScreenshotToReport = getAttachScreenshotToReport;

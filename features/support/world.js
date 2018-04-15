@@ -1,12 +1,13 @@
-var { setWorldConstructor } = require('cucumber');
+const { setWorldConstructor } = require('cucumber');
 const testControllerHolder = require('./testControllerHolder');
-var base64Img = require('base64-img');
+const base64Img = require('base64-img');
 
 function CustomWorld({ attach, parameters }) {
+
     this.waitForTestController = testControllerHolder.get()
-    .then(function (tc) {
-        return testController = tc;
-    }) 
+        .then(function (tc) {
+            return testController = tc;
+        })
 
     this.attach = attach;
 
@@ -21,17 +22,21 @@ function CustomWorld({ attach, parameters }) {
     this.addScreenshotToReport = function () {
         if (process.argv.includes("--format") || process.argv.includes("-f") || process.argv.includes("--format-options")) {
             testController.takeScreenshot()
-                .then(function (buffer) {
-                    var imgInBase64 = base64Img.base64Sync(buffer);
+                .then(function (pathToScreenshot) {
+                    var imgInBase64 = base64Img.base64Sync(pathToScreenshot);
                     var imageConvertForCuc = imgInBase64.substring(imgInBase64.indexOf(",") + 1);
                     return attach(imageConvertForCuc, 'image/png');
-                })
-                .catch(function(){
                 })
         } else {
             return new Promise((resolve) => { resolve(null); });
         }
     }
+
+    this.attachScreenshotToReport = function (pathToScreenshot) {
+        var imgInBase64 = base64Img.base64Sync(pathToScreenshot);
+        var imageConvertForCuc = imgInBase64.substring(imgInBase64.indexOf(",") + 1);
+        return attach(imageConvertForCuc, 'image/png');
+    }
 }
- 
+
 setWorldConstructor(CustomWorld)
