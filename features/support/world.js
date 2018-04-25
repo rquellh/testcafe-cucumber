@@ -1,42 +1,43 @@
-const { setWorldConstructor } = require('cucumber');
+const {setWorldConstructor} = require('cucumber');
 const testControllerHolder = require('./testControllerHolder');
 const base64Img = require('base64-img');
 
-function CustomWorld({ attach, parameters }) {
-
+function CustomWorld({attach, parameters}) {
     this.waitForTestController = testControllerHolder.get()
-        .then(function (tc) {
+        .then(function(tc) {
             return testController = tc;
-        })
+        });
 
     this.attach = attach;
 
-    this.setBrowser = function () {
+    this.setBrowser = function() {
         if (parameters.browser === undefined) {
-            return "chrome";
+            return 'chrome';
         } else {
             return parameters.browser;
         }
-    }
+    };
 
-    this.addScreenshotToReport = function () {
-        if (process.argv.includes("--format") || process.argv.includes("-f") || process.argv.includes("--format-options")) {
+    this.addScreenshotToReport = function() {
+        if (process.argv.includes('--format') || process.argv.includes('-f') || process.argv.includes('--format-options')) {
             testController.takeScreenshot()
-                .then(function (pathToScreenshot) {
+                .then(function(pathToScreenshot) {
                     var imgInBase64 = base64Img.base64Sync(pathToScreenshot);
-                    var imageConvertForCuc = imgInBase64.substring(imgInBase64.indexOf(",") + 1);
+                    var imageConvertForCuc = imgInBase64.substring(imgInBase64.indexOf(',') + 1);
                     return attach(imageConvertForCuc, 'image/png');
-                })
+                });
         } else {
-            return new Promise((resolve) => { resolve(null); });
+            return new Promise((resolve) => {
+                resolve(null);
+            });
         }
-    }
+    };
 
-    this.attachScreenshotToReport = function (pathToScreenshot) {
+    this.attachScreenshotToReport = function(pathToScreenshot) {
         var imgInBase64 = base64Img.base64Sync(pathToScreenshot);
-        var imageConvertForCuc = imgInBase64.substring(imgInBase64.indexOf(",") + 1);
+        var imageConvertForCuc = imgInBase64.substring(imgInBase64.indexOf(',') + 1);
         return attach(imageConvertForCuc, 'image/png');
-    }
+    };
 }
 
-setWorldConstructor(CustomWorld)
+setWorldConstructor(CustomWorld);

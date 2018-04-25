@@ -1,8 +1,8 @@
 const fs = require('fs');
 const createTestCafe = require('testcafe');
 const testControllerHolder = require('../support/testControllerHolder');
-const { AfterAll, BeforeAll, setDefaultTimeout, Before, After, Status } = require('cucumber');
-const errorHandling = require('../support/errorHandling')
+const {AfterAll, setDefaultTimeout, Before, After, Status} = require('cucumber');
+const errorHandling = require('../support/errorHandling');
 
 var isTestCafeError = false;
 var attachScreenshotToReport = null;
@@ -23,10 +23,10 @@ function createTestFile() {
 }
 
 function runTest(iteration, browser) {
-    var runner = null;
+    let runner = null;
 
     createTestCafe('localhost', 1338 + iteration, 1339 + iteration)
-        .then(function (tc) {
+        .then(function(tc) {
             cafeRunner = tc;
             runner = tc.createRunner();
             return runner
@@ -34,33 +34,33 @@ function runTest(iteration, browser) {
                 .screenshots('reports/screenshots/', true)
                 .browsers(browser)
                 .run()
-                .catch(function (error) {
+                .catch(function(error) {
                     console.log(error);
                 });
         })
-        .then(function (report) {
+        .then(function(report) {
         });
 }
 
 
 setDefaultTimeout(TIMEOUT);
 
-Before(function () {
+Before(function() {
     runTest(n, this.setBrowser());
     createTestFile();
     n += 2;
-    return this.waitForTestController.then(function (testController) {
+    return this.waitForTestController.then(function(testController) {
         return testController.maximizeWindow();
-    })
+    });
 });
 
-After(function () {
+After(function() {
     fs.unlinkSync('test.js');
     testControllerHolder.free();
 });
 
-After(function (testCase) {
-    var world = this;
+After(function(testCase) {
+    let world = this;
     if (testCase.result.status === Status.FAILED) {
         isTestCafeError = true;
         attachScreenshotToReport = world.attachScreenshotToReport;
@@ -68,11 +68,11 @@ After(function (testCase) {
     }
 });
 
-AfterAll(function () {
-    var intervalId = null;
+AfterAll(function() {
+    let intervalId = null;
 
     function waitForTestCafe() {
-        intervalId = setInterval(checkLastResponse, 500)
+        intervalId = setInterval(checkLastResponse, 500);
     }
 
     function checkLastResponse() {
@@ -84,15 +84,15 @@ AfterAll(function () {
     }
 
     waitForTestCafe();
-})
+});
 
 var getIsTestCafeError = function() {
     return isTestCafeError;
-}
+};
 
-var getAttachScreenshotToReport = function(){
+var getAttachScreenshotToReport = function() {
     return attachScreenshotToReport;
-}
+};
 
 exports.getIsTestCafeError = getIsTestCafeError;
 exports.getAttachScreenshotToReport = getAttachScreenshotToReport;

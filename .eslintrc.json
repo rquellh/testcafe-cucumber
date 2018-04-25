@@ -1,0 +1,13 @@
+{
+    "extends": "google",
+    "parserOptions": {
+        "ecmaVersion": 6
+      },
+    "rules": {
+        "linebreak-style": ["error", "windows"],
+        "max-len": "off",
+        "require-jsdoc": "off",
+        "no-var":"off",
+        "new-cap":"off"
+    }
+}
