@@ -1,4 +1,5 @@
 const fs = require('fs');
+const args = require('minimist')(process.argv.slice(2));
 const createTestCafe = require('testcafe');
 const testControllerHolder = require('../support/testControllerHolder');
 const {AfterAll, setDefaultTimeout, Before, After, Status} = require('cucumber');
@@ -33,7 +34,7 @@ function runTest(iteration, browser) {
                 .src('./test.js')
                 .screenshots('reports/screenshots/', true)
                 .browsers(browser)
-                .run()
+                .run(args)
                 .catch(function(error) {
                     console.log(error);
                 });

@@ -24,6 +24,7 @@
     "base64-img": "^1.0.4",
     "cucumber": "^4.2.1",
     "eslint": "^4.19.1",
+    "minimist": "^1.2.0",
     "testcafe": "^0.19.2"
   },
   "devDependencies": {
