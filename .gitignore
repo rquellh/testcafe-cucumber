@@ -7,3 +7,5 @@ reports/screenshots
 # Added empty reports folder
 reports/*
 !reports/.gitkeep
+.vscode/settings.json
+.vscode/launch.json
