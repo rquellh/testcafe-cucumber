@@ -1,8 +1,16 @@
 {
   "name": "testcafe-cucumber",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "An integration of TestCafe and CucumberJS",
-  "author": "ryan-quellhorst",
+  "author": "Ryan Quellhorst <rquellh@gmail.com>",
+  "contributors": [
+    "Chirag Masekar"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rquellh/testcafe-cucumber"
+  },
   "scripts": {
     "debug": "node --inspect=1337 --debug-brk --nolazy node_modules/cucumber/bin/cucumber-js --tags @debug --format json:./reports/report.json",
     "test": "./node_modules/.bin/cucumber-js.cmd",
