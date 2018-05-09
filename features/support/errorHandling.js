@@ -17,7 +17,7 @@ exports.ifErrorTakeScreenshot = function(resolvedTestController) {
     let tcScreenshotCapturer = testController.testRun.browserManipulationQueue.screenshotCapturer;
     let screenshotPath = tcScreenshotCapturer.baseDirName + '\\test-' + tcScreenshotCapturer.testIndex + '\\' + tcScreenshotCapturer.userAgentName + '\\errors\\' + tcScreenshotCapturer.errorScreenshotIndex + '.png';
 
-    if (hooks.getIsTestCafeError() === true || testController.testRun.opts.takeScreenshotsOnFails === true) {
+    if (hooks.getIsTestCafeError() === true && testController.testRun.opts.takeScreenshotsOnFails === true) {
         if (process.argv.includes('--format') || process.argv.includes('-f') || process.argv.includes('--format-options')) {
             return resolvedTestController.takeScreenshot(screenshotPath).then(function(path) {
                 // TODO: This is still not attaching the screenshot to the report
