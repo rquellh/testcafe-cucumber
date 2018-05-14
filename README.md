@@ -22,18 +22,8 @@ You can run tests by executing the `.\node_modules\.bin\cucumber-js.cmd` or `npm
 ### Mac or Linux
 You can run tests by executing `node_modules/cucumber/bin/cucumber-js`
 
-## Debugging in VSCode
-
-This will also allow you to debug in VSCode. 
-
-1. Tag the Scenarios you want to debug with the `@debug` tag
-
-2. Navigate to Debug `Ctrl + Shift + d` and click "Start Debugging"
-
-## Helpful VSCode Extensions
-
-* [Cucumber (Gherkin) Full Support](https://marketplace.visualstudio.com/items?itemName=alexkrechik.cucumberautocomplete) is a really helpful VSCode extension that does Cucumber syntax highlighting, autocomplete, and other things that are really helpful when working with Cucumber. The good news is, I've already setup everything you need in the settings.json file, so all you need to do is install it. 
-
+## Helpful VSCode Setup
+I've included a [wiki page](https://github.com/rquellh/testcafe-cucumber/wiki/Helpful-VSCode-Setup) for [debugging](https://github.com/rquellh/testcafe-cucumber/wiki/Helpful-VSCode-Setup#debug-setup) and setting up a [Cucumber syntax extenstion](https://github.com/rquellh/testcafe-cucumber/wiki/Helpful-VSCode-Setup#setting-up-cucumber-language-support). 
 
 ## Notes
 
