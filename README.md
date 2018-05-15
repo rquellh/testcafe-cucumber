@@ -22,7 +22,7 @@ You can run tests by executing the `.\node_modules\.bin\cucumber-js.cmd` or `npm
 ### Mac or Linux
 You can run tests by executing `node_modules/cucumber/bin/cucumber-js`
 
-## Wiki
+## Documentation
 * [Initial Setup](https://github.com/rquellh/testcafe-cucumber/wiki/Initial-Setup)
 * [Using TestCafe](https://github.com/rquellh/testcafe-cucumber/wiki/Using-TestCafe)
   * [Creating your first test](https://github.com/rquellh/testcafe-cucumber/wiki/Creating-your-first-test)
