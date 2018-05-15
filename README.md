@@ -22,8 +22,19 @@ You can run tests by executing the `.\node_modules\.bin\cucumber-js.cmd` or `npm
 ### Mac or Linux
 You can run tests by executing `node_modules/cucumber/bin/cucumber-js`
 
-## Helpful VSCode Setup
-I've included a [wiki page](https://github.com/rquellh/testcafe-cucumber/wiki/Helpful-VSCode-Setup) for [debugging](https://github.com/rquellh/testcafe-cucumber/wiki/Helpful-VSCode-Setup#debug-setup) and setting up a [Cucumber syntax extenstion](https://github.com/rquellh/testcafe-cucumber/wiki/Helpful-VSCode-Setup#setting-up-cucumber-language-support). 
+## Wiki
+* [Initial Setup](https://github.com/rquellh/testcafe-cucumber/wiki/Initial-Setup)
+* [Using TestCafe](https://github.com/rquellh/testcafe-cucumber/wiki/Using-TestCafe)
+  * [Creating your first test](https://github.com/rquellh/testcafe-cucumber/wiki/Creating-your-first-test)
+  * [Selectors](https://github.com/rquellh/testcafe-cucumber/wiki/Selectors)
+  * [Actions](https://github.com/rquellh/testcafe-cucumber/wiki/Actions)
+  * [Assertions](https://github.com/rquellh/testcafe-cucumber/wiki/Assertions)
+* [TestCafe & CucumberJS](https://github.com/rquellh/testcafe-cucumber/wiki/TestCafe-&-CucumberJS)
+  * [Helpful VSCode Setup](https://github.com/rquellh/testcafe-cucumber/wiki/Helpful-VSCode-Setup)
+  * [Creating Features](https://github.com/rquellh/testcafe-cucumber/wiki/Creating-Features)
+  * [Creating Step Definitions](https://github.com/rquellh/testcafe-cucumber/wiki/Creating-Step-Definitions)
+  * [Adding TestCafe Functionality to Cucumber steps](https://github.com/rquellh/testcafe-cucumber/wiki/Adding-TestCafe-Functionality-to-Cucumber-steps)
+  * [Harnessing Cucumber's Power](https://github.com/rquellh/testcafe-cucumber/wiki/Harnessing-Cucumber's-Power)
 
 ## Notes
 
