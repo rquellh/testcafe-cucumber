@@ -20,7 +20,9 @@ Also, thanks to the team at [TestCafe](https://github.com/DevExpress/testcafe) f
 
 ## Installation 
 
-1. Use the `npm install` command
+1. Make sure [Node.js](https://nodejs.org/) is installed
+2. Navigate to the root of the repo
+3. Use the `npm install` command
 
 ## Running tests
 
