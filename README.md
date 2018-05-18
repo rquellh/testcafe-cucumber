@@ -6,9 +6,10 @@ Big thank you to [helen-dikareva](https://github.com/helen-dikareva/) for your h
 
 Also, thanks to the team at [TestCafe](https://github.com/DevExpress/testcafe) for allowing testers to break away from Selenium.
 
-## Requirements
-* TestCafe - 0.19.2
-* CucumberJS - 4.2.1
+## Versions
+| --- | --- |
+| TestCafe      | 0.19.2 | 
+| CucumberJS      | 4.2.1     |
 
 ## Installation 
 
