@@ -25,7 +25,4 @@ exports.github = {
     searchButton: function() {
         return select('.header-search-input');
     },
-    firstSearchResult: function() {
-        return Selector('.repo-list-item').nth(0).with({boundTestRun: testController});
-    },
 };
