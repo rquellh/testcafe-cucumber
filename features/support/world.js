@@ -20,11 +20,26 @@ function CustomWorld({attach, parameters}) {
 
     this.addScreenshotToReport = function() {
         if (process.argv.includes('--format') || process.argv.includes('-f') || process.argv.includes('--format-options')) {
-            testController.takeScreenshot()
-                .then(function(pathToScreenshot) {
-                    var imgInBase64 = base64Img.base64Sync(pathToScreenshot);
+            var baseDirName = testController.testRun.browserManipulationQueue.screenshotCapturer.baseDirName;
+            var testIndex = testController.testRun.browserManipulationQueue.screenshotCapturer.testIndex;
+            var screenshotIndex = testController.testRun.browserManipulationQueue.screenshotCapturer.screenshotIndex;
+            var baseScreenshotPath = testController.testRun.browserManipulationQueue.screenshotCapturer.baseScreenshotsPath;
+            var cafeScreenshotPath = '\\' + baseDirName + '\\test-' + testIndex + '\\' + screenshotIndex + '.png';
+            var fullScreenshotPath = '.\\' + formatBase(baseScreenshotPath) + cafeScreenshotPath;
+
+            function formatBase(path) {
+                removeLastSlash = path.slice(0, -1);
+                return forwardSlash = removeLastSlash.replace('/', '\\');
+            }
+
+            testController.takeScreenshot(cafeScreenshotPath)
+                .then(function() {
+                    var imgInBase64 = base64Img.base64Sync(fullScreenshotPath);
                     var imageConvertForCuc = imgInBase64.substring(imgInBase64.indexOf(',') + 1);
                     return attach(imageConvertForCuc, 'image/png');
+                })
+                .catch(function(error) {
+                    console.warn('The screenshot was not attached to the report');
                 });
         } else {
             return new Promise((resolve) => {
