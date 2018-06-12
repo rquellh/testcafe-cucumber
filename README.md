@@ -1,6 +1,6 @@
 # Integration of TestCafe and CucumberJS
 
-This is a demonstration of integration [TestCafe](https://github.com/DevExpress/testcafe) into [CucumberJS](https://github.com/cucumber/cucumber-js) tests using TestCafe 0.19.2 and Cucumber 4.2.1.
+This is a demonstration of integration [TestCafe](https://github.com/DevExpress/testcafe) into [CucumberJS](https://github.com/cucumber/cucumber-js) tests using TestCafe 0.20.3 and Cucumber 4.2.1.
 
 Big thank you to [helen-dikareva](https://github.com/helen-dikareva/) for your help in starting the integration with your [repo](https://github.com/helen-dikareva/testcafe-cucumber-demo). This is a fork of all of the hard work you've put in. 
 
@@ -10,7 +10,7 @@ Also, thanks to the team at [TestCafe](https://github.com/DevExpress/testcafe) f
 <table>
 <tr>
     <td>TestCafe</td>
-    <td>0.19.2</td>
+    <td>0.20.3</td>
 </tr>
 <tr>
     <td>CucumberJS</td>
