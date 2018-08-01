@@ -1,6 +1,6 @@
-var {Given, When, Then} = require('cucumber');
-var Role = require('testcafe').Role;
-var githubPage = require('../support/pages/github-page');
+const {Given, When, Then} = require('cucumber');
+const Role = require('testcafe').Role;
+const githubPage = require('../support/pages/github-page');
 
 Given(/^I open the GitHub page$/, async function() {
     await testController.navigateTo(githubPage.github.url());
