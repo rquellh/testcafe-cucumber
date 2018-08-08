@@ -1,6 +1,6 @@
-var testControllerHolder = {
-    testController: null,
+const testControllerHolder = {
 
+    testController: null,
     captureResolver: null,
     getResolver: null,
 

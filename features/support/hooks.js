@@ -3,12 +3,12 @@ const createTestCafe = require('testcafe');
 const testControllerHolder = require('../support/testControllerHolder');
 const {AfterAll, setDefaultTimeout, Before, After, Status} = require('cucumber');
 const errorHandling = require('../support/errorHandling');
+const TIMEOUT = 20000;
 
-var isTestCafeError = false;
-var attachScreenshotToReport = null;
-var cafeRunner = null;
-var TIMEOUT = 20000;
-var n = 0;
+let isTestCafeError = false;
+let attachScreenshotToReport = null;
+let cafeRunner = null;
+let n = 0;
 
 function createTestFile() {
     fs.writeFileSync('test.js',
@@ -23,19 +23,17 @@ function createTestFile() {
 }
 
 function runTest(iteration, browser) {
-    let runner = null;
-
     createTestCafe('localhost', 1338 + iteration, 1339 + iteration)
         .then(function(tc) {
             cafeRunner = tc;
-            runner = tc.createRunner();
+            const runner = tc.createRunner();
             return runner
                 .src('./test.js')
                 .screenshots('reports/screenshots/', true)
                 .browsers(browser)
                 .run()
                 .catch(function(error) {
-                    console.log(error);
+                    console.error(error);
                 });
         })
         .then(function(report) {
@@ -60,7 +58,7 @@ After(function() {
 });
 
 After(function(testCase) {
-    let world = this;
+    const world = this;
     if (testCase.result.status === Status.FAILED) {
         isTestCafeError = true;
         attachScreenshotToReport = world.attachScreenshotToReport;
@@ -86,11 +84,11 @@ AfterAll(function() {
     waitForTestCafe();
 });
 
-var getIsTestCafeError = function() {
+const getIsTestCafeError = function() {
     return isTestCafeError;
 };
 
-var getAttachScreenshotToReport = function() {
+const getAttachScreenshotToReport = function() {
     return attachScreenshotToReport;
 };
 
