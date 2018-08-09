@@ -26,7 +26,9 @@
     "test-edge-report": "./node_modules/.bin/cucumber-js.cmd  --format json:./reports/report.json --world-parameters \"{\\\"browser\\\": \\\"edge\\\"}\"",
     "test-firefox-report": "./node_modules/.bin/cucumber-js.cmd  --format json:./reports/report.json --world-parameters \"{\\\"browser\\\": \\\"firefox\\\"}\"",
     "test-opera-report": "./node_modules/.bin/cucumber-js.cmd  --format json:./reports/report.json --world-parameters \"{\\\"browser\\\": \\\"opera\\\"}\"",
-    "test-safari-report": "./node_modules/.bin/cucumber-js.cmd  --format json:./reports/report.json --world-parameters \"{\\\"browser\\\": \\\"safari\\\"}\""
+    "test-safari-report": "./node_modules/.bin/cucumber-js.cmd  --format json:./reports/report.json --world-parameters \"{\\\"browser\\\": \\\"safari\\\"}\"",
+    "test-chrome-headless": "./node_modules/.bin/cucumber-js.cmd  --world-parameters \"{\\\"browser\\\": \\\"chrome:headless\\\"}\"",
+    "test-firefox-headless": "./node_modules/.bin/cucumber-js.cmd  --world-parameters \"{\\\"browser\\\": \\\"firefox:headless\\\"}\""    
   },
   "dependencies": {
     "base64-img": "^1.0.4",
