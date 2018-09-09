@@ -6,7 +6,7 @@ Given('I am open Google\'s search page', async function() {
 });
 
 When('I am typing my search request {string} on Google', async function(text) {
-    var input = Selector('#lst-ib').with({boundTestRun: testController});
+    var input = Selector('.gLFyf').with({boundTestRun: testController});
     await this.addScreenshotToReport();
     await testController.typeText(input, text);
 });
