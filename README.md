@@ -10,7 +10,7 @@ Also, thanks to the team at [TestCafe](https://github.com/DevExpress/testcafe) f
 <table>
 <tr>
     <td>TestCafe</td>
-    <td>0.20.5</td>
+    <td>0.22.0</td>
 </tr>
 <tr>
     <td>CucumberJS</td>

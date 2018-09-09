@@ -28,14 +28,14 @@
     "test-opera-report": "./node_modules/.bin/cucumber-js.cmd  --format json:./reports/report.json --world-parameters \"{\\\"browser\\\": \\\"opera\\\"}\"",
     "test-safari-report": "./node_modules/.bin/cucumber-js.cmd  --format json:./reports/report.json --world-parameters \"{\\\"browser\\\": \\\"safari\\\"}\"",
     "test-chrome-headless": "./node_modules/.bin/cucumber-js.cmd  --world-parameters \"{\\\"browser\\\": \\\"chrome:headless\\\"}\"",
-    "test-firefox-headless": "./node_modules/.bin/cucumber-js.cmd  --world-parameters \"{\\\"browser\\\": \\\"firefox:headless\\\"}\""    
+    "test-firefox-headless": "./node_modules/.bin/cucumber-js.cmd  --world-parameters \"{\\\"browser\\\": \\\"firefox:headless\\\"}\""
   },
   "dependencies": {
     "base64-img": "^1.0.4",
     "cucumber": "^4.2.1",
     "eslint": "^4.19.1",
     "npm": "^6.0.0",
-    "testcafe": "^0.20.5"
+    "testcafe": "^0.22.0"
   },
   "devDependencies": {
     "eslint-config-google": "^0.9.1"
