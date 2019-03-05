@@ -32,10 +32,10 @@
   },
   "dependencies": {
     "base64-img": "^1.0.4",
-    "cucumber": "^4.2.1",
+    "cucumber": "^5.1.0",
     "eslint": "^4.19.1",
     "npm": "^6.0.0",
-    "testcafe": "^0.22.0"
+    "testcafe": "^1.1.0"
   },
   "devDependencies": {
     "eslint-config-google": "^0.9.1"
