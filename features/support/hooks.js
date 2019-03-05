@@ -18,8 +18,7 @@ function createTestFile() {
         'fixture("fixture")\n' +
 
         'test\n' +
-        '("test", testControllerHolder.capture)\n' +
-        '.after(async t => {await errorHandling.ifErrorTakeScreenshot(t)})');
+        '("test", testControllerHolder.capture)')
 }
 
 function runTest(iteration, browser) {
@@ -57,12 +56,13 @@ After(function() {
     testControllerHolder.free();
 });
 
-After(function(testCase) {
+After(async function(testCase) {
     const world = this;
     if (testCase.result.status === Status.FAILED) {
         isTestCafeError = true;
         attachScreenshotToReport = world.attachScreenshotToReport;
         errorHandling.addErrorToController();
+        await errorHandling.ifErrorTakeScreenshot(testController)
     }
 });
 
@@ -88,8 +88,8 @@ const getIsTestCafeError = function() {
     return isTestCafeError;
 };
 
-const getAttachScreenshotToReport = function() {
-    return attachScreenshotToReport;
+const getAttachScreenshotToReport = function(path) {
+    return attachScreenshotToReport(path);
 };
 
 exports.getIsTestCafeError = getIsTestCafeError;
