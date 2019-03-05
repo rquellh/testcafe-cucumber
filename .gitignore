@@ -13,3 +13,6 @@ reports/*
 
 #Linter
 .eslintrc.json
+
+#Package-lock
+package-lock.json
