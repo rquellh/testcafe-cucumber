@@ -12,11 +12,11 @@ Also, thanks to the team at [TestCafé](https://github.com/DevExpress/testcafe) 
 <table>
 <tr>
     <td>TestCafé</td>
-    <td>0.22.0</td>
+    <td>1.1.0</td>
 </tr>
 <tr>
     <td>CucumberJS</td>
-    <td>4.2.1</td>
+    <td>5.1.0</td>
 </tr>
 </table>
 
