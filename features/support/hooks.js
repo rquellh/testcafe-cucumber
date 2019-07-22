@@ -11,7 +11,7 @@ let cafeRunner = null;
 let n = 0;
 
 function createTestFile() {
-    fs.writeFileSync('test.js',
+    fs.writeFileSync(process.env.CUCUMBER_SLAVE_ID + '_test.js',
         'import errorHandling from "./features/support/errorHandling.js";\n' +
         'import testControllerHolder from "./features/support/testControllerHolder.js";\n\n' +
 
@@ -22,12 +22,12 @@ function createTestFile() {
 }
 
 function runTest(iteration, browser) {
-    createTestCafe('localhost', 1338 + iteration, 1339 + iteration)
+    createTestCafe('localhost')
         .then(function(tc) {
             cafeRunner = tc;
             const runner = tc.createRunner();
             return runner
-                .src('./test.js')
+                .src('./' + process.env.CUCUMBER_SLAVE_ID + '_test.js')
                 .screenshots('reports/screenshots/', true)
                 .browsers(browser)
                 .run()
@@ -52,7 +52,7 @@ Before(function() {
 });
 
 After(function() {
-    fs.unlinkSync('test.js');
+    fs.unlinkSync(process.env.CUCUMBER_SLAVE_ID + '_test.js');
     testControllerHolder.free();
 });
 
