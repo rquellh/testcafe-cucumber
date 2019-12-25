@@ -13,8 +13,7 @@ exports.addErrorToController = function() {
 };
 
 exports.ifErrorTakeScreenshot = function(resolvedTestController) {
-
-    if (hooks.getIsTestCafeError() === true && testController.testRun.opts.takeScreenshotsOnFails === true) {
+    if (hooks.getIsTestCafeError() === true && testController.testRun.opts.screenshots.takeOnFails === true) {
         if (process.argv.includes('--format') || process.argv.includes('-f') || process.argv.includes('--format-options')) {
             resolvedTestController.executionChain._state = "fulfilled"
             return resolvedTestController.takeScreenshot().then(function(path) {

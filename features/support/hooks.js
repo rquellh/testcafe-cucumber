@@ -28,7 +28,10 @@ function runTest(iteration, browser) {
             const runner = tc.createRunner();
             return runner
                 .src('./test.js')
-                .screenshots('reports/screenshots/', true)
+                .screenshots({
+                    path : 'reports/screenshots/',
+                    takeOnFails : true
+                    })
                 .browsers(browser)
                 .run()
                 .catch(function(error) {
